@@ -5,12 +5,14 @@ require('@babel/core').transform('code', {
 
 import { Telegraf } from 'telegraf'
 import { setupHelp, setupStart } from './commands/startAndHelp'
+import { setupCityBikes } from './commands/citybikes'
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 console.log('bot is running')
 
 setupStart(bot)
 setupHelp(bot)
+setupCityBikes(bot)
 
 bot.on('sticker', (ctx) => ctx.reply('👍'))
 bot.hears('hi', (ctx) => ctx.reply('Hey there'))

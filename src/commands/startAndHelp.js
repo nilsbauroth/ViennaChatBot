@@ -1,5 +1,12 @@
+import { Markup } from 'telegraf'
+
 export const setupStart = (bot) => {
-  bot.start((ctx) => ctx.reply('Welcome'))
+  bot.start((ctx) =>
+    ctx.reply(
+      'Welcome',
+      Markup.keyboard([['🚲 Nearest Citybikes'], ['🚮 Next Recycling']]),
+    ),
+  )
 }
 
 export const setupHelp = (bot) => {
