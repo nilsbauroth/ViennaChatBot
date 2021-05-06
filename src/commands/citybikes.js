@@ -20,11 +20,14 @@ export const setupCityBikes = (bot) => {
     console.log(msg.location.longitude)
   })
 
-  /*
+  bot.on('callback_query', (callbackQuery) => {
+    const action = callbackQuery.data
 
-  bot.onText(/\/fetch/, (msg) => {
-    fetchData.fetchUrl('https://dynamisch.citybikewien.at/citybike_xml.php?json')
-    console.log('fetched')
+    console.log('ballback', callbackQuery)
+
+    if (action === 'nearestCitybike') {
+      fetchData.fetchUrl('https://dynamisch.citybikewien.at/citybike_xml.php?json')
+      console.log('fetched')
+    }
   })
-  */
 }

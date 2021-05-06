@@ -4,12 +4,15 @@ export const setupStart = (bot) => {
   bot.onText(/\/start/, (msg) =>
     bot.sendMessage(msg.chat.id, 'Welcome', {
       reply_markup: JSON.stringify({
-        keyboard: [['🚲 Nearest Citybikes'], ['🚮 Next Recycling']],
+        keyboard: [
+          [{ text: '🚲 Nearest Citybikes', callback_data: 'nearestCitybike' }],
+          [{ text: '🚮 Next Recycling' }],
+        ],
       }),
     }),
   )
 }
 
 export const setupHelp = (bot) => {
-  bot.onText(/\/help/, (msg, match) => bot.sendMessage(msg.chat.id, 'Help'))
+  bot.onText(/\/help/, (msg) => bot.sendMessage(msg.chat.id, 'Help'))
 }
