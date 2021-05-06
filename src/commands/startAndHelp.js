@@ -1,18 +1,17 @@
 import { Markup } from 'telegraf'
 
 export const setupStart = (bot) => {
-  bot.onText(/\/start/, (msg) =>
-    bot.sendMessage(msg.chat.id, 'Welcome', {
-      reply_markup: JSON.stringify({
-        keyboard: [
-          [{ text: '🚲 Nearest Citybikes', callback_data: 'nearestCitybike' }],
-          [{ text: '🚮 Next Recycling' }],
-        ],
-      }),
-    }),
+  bot.start((ctx) =>
+    ctx.reply(
+      'Welcome',
+      Markup.inlineKeyboard([
+        [Markup.button.callback('🚲 Nearest Citybikes', 'startCitybikes')],
+        [Markup.button.callback('🚮 Next Recycling', 'startRecycling')],
+      ]),
+    ),
   )
 }
 
 export const setupHelp = (bot) => {
-  bot.onText(/\/help/, (msg) => bot.sendMessage(msg.chat.id, 'Help'))
+  bot.help((ctx) => ctx.reply('Help'))
 }

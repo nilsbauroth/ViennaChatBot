@@ -1,33 +1,27 @@
 import { Markup } from 'telegraf'
 import { fetchData } from '../helpers/fetch'
 
+export const CITYBIKE_TEXT = 'Find your next citybike:'
+
 export const setupCityBikes = (bot) => {
-  bot.onText(/\/bike/, (msg) => {
-    bot.sendMessage(msg.chat.id, 'Contact and Location request', {
-      reply_markup: JSON.stringify({
-        keyboard: [
-          [{ text: 'Location', request_location: true }],
-          [{ text: 'Contact', request_contact: true }],
-        ],
-        resize_keyboard: true,
-        one_time_keyboard: true,
-      }),
-    })
+  bot.command('citybike', (ctx) => {
+    showCitybikeButtons(ctx)
   })
 
-  bot.on('location', (msg) => {
-    console.log(msg.location.latitude)
-    console.log(msg.location.longitude)
-  })
+  bot.action('startCitybikes', (ctx) => showCitybikeButtons(ctx))
+}
 
-  bot.on('callback_query', (callbackQuery) => {
-    const action = callbackQuery.data
+// REPLIES ------------------------------------------------------------------
+export const showNextCitybikes = (ctx) => {
+  const { longitude, latitude } = ctx.update.message.location
 
-    console.log('ballback', callbackQuery)
+  console.log('location: ', longitude, latitude)
+  return ctx.reply('🚲🚴🏻‍♀️🚴🏻‍♂️')
+}
 
-    if (action === 'nearestCitybike') {
-      fetchData.fetchUrl('https://dynamisch.citybikewien.at/citybike_xml.php?json')
-      console.log('fetched')
-    }
-  })
+const showCitybikeButtons = (ctx) => {
+  ctx.reply(
+    CITYBIKE_TEXT,
+    Markup.keyboard([[Markup.button.locationRequest('🚩 Send Location')]]),
+  )
 }
