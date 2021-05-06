@@ -1,37 +1,30 @@
 import { Markup } from 'telegraf'
-
-const sendLiveLocation = (ctx) => {
-  ctx.replyWithLocation().then((message) => {
-    console.log('mess', message)
-
-    const lat = message.location.latitude
-    const lon = message.location.longitude
-
-    console.log('lat', lat)
-    console.log('lon', lon)
-
-    ctx.telegram
-      .editMessageLiveLocation(lat, lon, message.chat.id, message.message_id)
-      .catch(() => console.log('error'))
-  })
-}
-
-const getLocation = (message) => {
-  console.log(JSON.stringify(message))
-}
+import { fetchData } from '../helpers/fetch'
 
 export const setupCityBikes = (bot) => {
-  bot.command('citybike', (ctx) => {
-    ctx.reply(
-      'Choose',
-      Markup.keyboard([
-        ['🚩 Send Location'],
-        [Markup.button.locationRequest('send location')],
-      ]),
-    )
-
-    getLocation(ctx.update.message)
+  bot.onText(/\/bike/, (msg) => {
+    bot.sendMessage(msg.chat.id, 'Contact and Location request', {
+      reply_markup: JSON.stringify({
+        keyboard: [
+          [{ text: 'Location', request_location: true }],
+          [{ text: 'Contact', request_contact: true }],
+        ],
+        resize_keyboard: true,
+        one_time_keyboard: true,
+      }),
+    })
   })
 
-  bot.hears('🚩 Send Location', sendLiveLocation)
+  bot.on('location', (msg) => {
+    console.log(msg.location.latitude)
+    console.log(msg.location.longitude)
+  })
+
+  /*
+
+  bot.onText(/\/fetch/, (msg) => {
+    fetchData.fetchUrl('https://dynamisch.citybikewien.at/citybike_xml.php?json')
+    console.log('fetched')
+  })
+  */
 }

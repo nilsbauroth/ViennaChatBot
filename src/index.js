@@ -3,20 +3,18 @@ require('@babel/core').transform('code', {
   presets: ['@babel/preset-env'],
 })
 
-import { Telegraf } from 'telegraf'
+import TelegramBot from 'node-telegram-bot-api'
 import { setupHelp, setupStart } from './commands/startAndHelp'
-import { setupCityBikes } from './commands/citybikes'
+import { setupCityBikes, setupCityBikes2 } from './commands/citybikes'
 
-const bot = new Telegraf(process.env.BOT_TOKEN)
+const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true })
 console.log('bot is running')
 
 setupStart(bot)
 setupHelp(bot)
 setupCityBikes(bot)
 
-bot.on('sticker', (ctx) => ctx.reply('👍'))
-bot.hears('hi', (ctx) => ctx.reply('Hey there'))
-bot.launch()
+bot.on('polling_error', console.log)
 
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'))
