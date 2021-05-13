@@ -3,12 +3,12 @@ require('@babel/core').transform('code', {
   presets: ['@babel/preset-env'],
 })
 
-import TelegramBot from 'node-telegram-bot-api'
+import { Telegraf } from 'telegraf'
 import { setupHelp, setupStart } from './commands/startAndHelp'
 import { setupCityBikes } from './commands/citybikes'
 import { setupLocation } from './helpers/location'
 
-const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true })
+const bot = new Telegraf(process.env.BOT_TOKEN)
 console.log('bot is running')
 
 setupStart(bot)
