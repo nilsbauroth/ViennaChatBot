@@ -1,26 +1,3 @@
-import { showNextCitybikes } from '../commands/citybikes'
-
-export const setupLocation = (bot) => {
-  bot.on('location', (ctx) => {
-    const msg = ctx.update.message
-    const location = msg.location
-
-    ctx.reply(`lat: ${location.latitude} lon: ${location.longitude}`)
-
-    console.log('message', msg)
-
-    showNextCitybikes(ctx)
-
-    /*
-    switch (msg.reply_to_message.text) {
-      case CITYBIKE_TEXT:
-        
-        break
-    }
-    */
-  })
-}
-
 // lat1, lon1 = Latitude and Longitude of point 1 (in decimal degrees)
 // lat2, lon2 = Latitude and Longitude of point 2 (in decimal degrees)
 // unit = the unit you desire for results

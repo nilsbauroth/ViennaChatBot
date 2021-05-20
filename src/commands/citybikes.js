@@ -1,15 +1,21 @@
 import { Markup } from 'telegraf'
 import { fetchUrl } from '../helpers/fetch'
 import { distance } from '../helpers/location'
+import { redis } from '../index'
 
-export const CITYBIKE_TEXT = 'Find your next citybike:'
+export const CITYBIKE = 'citybike'
 
 export const setupCityBikes = (bot) => {
   bot.command('citybike', (ctx) => {
     showCitybikeButtons(ctx)
   })
 
-  bot.action('startCitybikes', (ctx) => showCitybikeButtons(ctx))
+  bot.action('startCitybikes', (ctx) => {
+    console.log('ctx.update', ctx.update)
+    redis.set('current_command', CITYBIKE)
+    console.log('Redis: "current_command: citybike"')
+    showCitybikeButtons(ctx)
+  })
 }
 
 // REPLIES ------------------------------------------------------------------
@@ -42,7 +48,7 @@ export const showNextCitybikes = async (ctx) => {
 
 const showCitybikeButtons = (ctx) => {
   ctx.reply(
-    CITYBIKE_TEXT,
-    Markup.keyboard([[Markup.button.locationRequest('🚩 Send Location')]]),
+    'Find your next citybike:',
+    Markup.keyboard([[Markup.button.locationRequest('🚩 Send Location')], ['Cancel']]),
   )
 }

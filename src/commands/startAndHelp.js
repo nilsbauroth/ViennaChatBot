@@ -3,8 +3,9 @@ import { Markup } from 'telegraf'
 export const setupStart = (bot) => {
   bot.start((ctx) =>
     ctx.reply(
-      'Welcome',
+      '**Welcome**',
       Markup.inlineKeyboard([
+        [Markup.button.callback('Share Location', 'shareLocation')],
         [Markup.button.callback('🚲 Nearest Citybikes', 'startCitybikes')],
         [Markup.button.callback('🚮 Next Recycling', 'startRecycling')],
       ]),

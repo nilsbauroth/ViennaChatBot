@@ -4,9 +4,16 @@ require('@babel/core').transform('code', {
 })
 
 import { Telegraf } from 'telegraf'
+import Redis from 'ioredis'
 import { setupHelp, setupStart } from './commands/startAndHelp'
 import { setupCityBikes } from './commands/citybikes'
-import { setupLocation } from './helpers/location'
+import { setupLocation } from './commands/location'
+
+export const redis = new Redis({
+  port: 13413,
+  host: 'redis-13413.c1.us-east1-2.gce.cloud.redislabs.com',
+  password: process.env.REDIS_PASSWORT,
+})
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 console.log('bot is running')
@@ -29,3 +36,9 @@ bot.launch()
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'))
 process.once('SIGTERM', () => bot.stop('SIGTERM'))
+
+/**
+ *  1. Message: to show you the nearest places we need to acces your location
+ *  2. location bekommen und in DB speichern
+ *  3.
+ */
