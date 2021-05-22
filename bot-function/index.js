@@ -3,6 +3,8 @@ require('@babel/core').transform('code', {
   presets: ['@babel/preset-env'],
 })
 
+const functions = require('firebase-functions')
+
 import { Telegraf } from 'telegraf'
 import Redis from 'ioredis'
 import { setupHelp, setupStart } from './commands/startAndHelp'
@@ -12,10 +14,10 @@ import { setupLocation } from './commands/location'
 export const redis = new Redis({
   port: 13413,
   host: 'redis-13413.c1.us-east1-2.gce.cloud.redislabs.com',
-  password: process.env.REDIS_PASSWORT,
+  password: functions.config().redis.key,
 })
 
-const bot = new Telegraf(process.env.BOT_TOKEN)
+const bot = new Telegraf(functions.config().telegrambot.key)
 console.log('bot is running')
 
 setupStart(bot)
@@ -24,6 +26,10 @@ setupLocation(bot)
 setupCityBikes(bot)
 
 bot.launch()
+
+exports.bot = functions.https.onRequest((req, res) => {
+  bot.handleUpdate(req.body, res)
+})
 
 /*  LEARNINGS
     - bot.action funktioniert scheinbar nur mit Markup.inlineKeyboard
