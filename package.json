@@ -35,5 +35,8 @@
     "eslint": "^7.26.0",
     "nodemon": "^2.0.7",
     "prettier": "2.2.1"
+  },
+  "dependencies": {
+    "firebase-functions": "^3.14.1"
   }
 }
