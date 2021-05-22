@@ -2,24 +2,16 @@ require('dotenv').config()
 require('@babel/core').transform('code', {
   presets: ['@babel/preset-env'],
 })
-import "core-js/stable";
-import "regenerator-runtime/runtime";
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
 
-const functions = require('firebase-functions')
-
+import * as functions from 'firebase-functions'
 import { Telegraf } from 'telegraf'
-import Redis from 'ioredis'
 import { setupHelp, setupStart } from './commands/startAndHelp'
 import { setupCityBikes } from './commands/citybikes'
 import { setupLocation } from './commands/location'
 
-// export const redis = new Redis({
-//   port: 13413,
-//   host: 'redis-13413.c1.us-east1-2.gce.cloud.redislabs.com',
-//   password: functions.config().redis.key,
-// })
-
-const bot = new Telegraf('1739155900:AAGPyHXlDGtDASBR7MJJs8xv1vxV71zAkXg')
+const bot = new Telegraf(functions().config.telegrambot.key || process.env.BOT_TOKEN)
 console.log('bot is running')
 
 setupStart(bot)

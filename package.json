@@ -4,10 +4,12 @@
   "description": "Members: Nils Bauroth, Sigrid Huemer, Linus Schneider",
   "main": "src/index.js",
   "scripts": {
+    "postinstall": "cd bot-function && npm install",
     "start": "nodemon --exec babel-node bot-function/index.js",
     "build": "babel bot-function -d dist",
     "build-functions": "babel bot-function --out-dir functions --copy-files --ignore src/node_modules",
-    "postbuild-functions": "cd functions && npm install"
+    "postbuild-functions": "cd functions && npm install",
+    "deploy": "npm run build-functions && firebase deploy --only functions"
   },
   "repository": {
     "type": "git",
