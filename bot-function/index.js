@@ -5,13 +5,13 @@ require('@babel/core').transform('code', {
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 
-const functions = require('firebase-functions')
+import * as functions from 'firebase-functions'
 import { Telegraf } from 'telegraf'
 import { setupHelp, setupStart } from './commands/startAndHelp'
 import { setupCityBikes } from './commands/citybikes'
 import { setupLocation } from './commands/location'
 
-const bot = new Telegraf(functions().config.telegrambot.key || process.env.BOT_TOKEN)
+const bot = new Telegraf(functions.config().telegrambot.key || process.env.BOT_TOKEN)
 console.log('bot is running')
 
 setupStart(bot)
