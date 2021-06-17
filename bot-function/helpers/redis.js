@@ -1,3 +1,4 @@
+require('dotenv').config()
 import Redis from 'ioredis'
 import * as functions from 'firebase-functions'
 
