@@ -1,23 +1,29 @@
 import { Markup } from 'telegraf'
-import { showNextCitybikes, CITYBIKE } from './citybikes'
 import { redis } from '../helpers/redis'
+import { replyNextCitybikes, CITYBIKE } from './citybikes'
+import { replyNextDrinkingFountains, DRINKING_FOUNTAINS } from './drinkingFountains'
 
 export const setupLocation = (bot) => {
   bot.on('location', (ctx) => {
     const msg = ctx.update.message
     const location = msg.location
 
-    ctx.reply(`lat: ${location.latitude} lon: ${location.longitude}`)
+    ctx.replyWithMarkdownV2(
+      `*Your Location* \nlat: ${location.latitude} \nlon: ${location.longitude}`,
+    )
 
     // TODO: save location data to redis
+    console.log('redis current: ' + redis.get('current_command'))
 
     redis.get('current_command').then((res) => {
-      console.log(res)
+      console.log('RESULT:' + res)
 
       switch (res) {
         case CITYBIKE:
           replyNextCitybikes(ctx)
-          showNextCitybikes(ctx)
+          break
+        case DRINKING_FOUNTAINS:
+          replyNextDrinkingFountains(ctx)
           break
       }
     })

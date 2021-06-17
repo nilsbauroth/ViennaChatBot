@@ -9,7 +9,7 @@ export const setupStart = (bot) => {
       markupText,
       Markup.inlineKeyboard([
         [Markup.button.callback('🚲 Nearest Citybikes', 'startCitybikes')],
-        [Markup.button.callback('🚮 Next Recycling', 'startRecycling')],
+        [Markup.button.callback('💧 Next Drinking Fountain', 'startDrinkingFountains')],
         /*[Markup.button.callback('🚮 Next Recycling', 'startRecycling')],*/
       ]),
     ),

@@ -7,6 +7,7 @@ import { Telegraf } from 'telegraf'
 import { setupHelp, setupStart } from './commands/startAndHelp'
 import { setupCityBikes } from './commands/citybikes'
 import { setupLocation } from './commands/location'
+import { setupDrinkingFountains } from './commands/drinkingFountains'
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 console.log('bot is running')
@@ -15,6 +16,7 @@ setupStart(bot)
 setupHelp(bot)
 setupLocation(bot)
 setupCityBikes(bot)
+setupDrinkingFountains(bot)
 
 bot.launch()
 
