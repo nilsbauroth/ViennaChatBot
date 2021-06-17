@@ -16,7 +16,7 @@ export const setupLocation = (bot) => {
 
       switch (res) {
         case CITYBIKE:
-          console.log('CITYBIKE CASE')
+          replyNextCitybikes(ctx)
           showNextCitybikes(ctx)
           break
       }
