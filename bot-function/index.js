@@ -5,7 +5,7 @@ require('@babel/core').transform('code', {
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 
-import * as functions from 'firebase-functions'
+const functions = require('firebase-functions')
 import { Telegraf } from 'telegraf'
 import { setupHelp, setupStart } from './commands/startAndHelp'
 import { setupCityBikes } from './commands/citybikes'
