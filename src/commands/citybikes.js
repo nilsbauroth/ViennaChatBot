@@ -1,7 +1,7 @@
 import { Markup } from 'telegraf'
 import { fetchUrl } from '../helpers/fetch'
 import { distance } from '../helpers/location'
-import { redis } from '../index'
+import { redis } from '../helpers/redis'
 
 export const CITYBIKE = 'citybike'
 

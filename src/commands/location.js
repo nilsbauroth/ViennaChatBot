@@ -1,6 +1,6 @@
 import { Markup } from 'telegraf'
 import { showNextCitybikes, CITYBIKE } from './citybikes'
-import { redis } from '../index'
+import { redis } from '../helpers/redis'
 
 export const setupLocation = (bot) => {
   bot.on('location', (ctx) => {
