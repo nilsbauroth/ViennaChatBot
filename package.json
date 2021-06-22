@@ -5,7 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon --exec babel-node src/index.js",
-    "build": "babel src -d dist"
+    "build": "babel src -d dist",
+    "start:prod": "node dist/index.js"
+    
   },
   "repository": {
     "type": "git",
@@ -39,5 +41,8 @@
     "eslint": "^7.26.0",
     "nodemon": "^2.0.7",
     "prettier": "2.2.1"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
