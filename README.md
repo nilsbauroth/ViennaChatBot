@@ -40,9 +40,12 @@ You can get the telegram bot token by creating a bot with Telegram Botfather ([T
 
 The redis user password can be retreived from your created free database (e.g. on https://redislabs.com/ - it's free).
 
+For geocoding addresses (address <-> coordinates) we use the service from https://opencagedata.com.
+
 ```
 BOT_TOKEN=<YOUR_TELEGRAM_BOT_TOKEN>
 REDIS_PASSWORT=<YOUR_REDIS_USER_PASSWORD>
+OPENCAGE_API_KEY=<YOUR_OPEN_CAGE_KEY>
 ```
 
 ### 2. Start the application

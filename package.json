@@ -30,6 +30,7 @@
     "express": "^4.17.1",
     "ioredis": "^4.27.2",
     "node-fetch": "^2.6.1",
+    "opencage-api-client": "^1.0.0",
     "telegraf": "^4.3.0"
   },
   "devDependencies": {

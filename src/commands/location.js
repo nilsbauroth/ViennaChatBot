@@ -1,6 +1,7 @@
 import { Markup } from 'telegraf'
 import { redis } from '../helpers/redis'
 import { replyNextCitybikes, CITYBIKE } from './citybikes'
+import { replyNextCovidTestBox, COVID_TEST_BOX } from './covidTestBox'
 import { replyNextDrinkingFountains, DRINKING_FOUNTAINS } from './drinkingFountains'
 import { replyNextPublicToilet, PUBLIC_TOILETS } from './publicToilets'
 
@@ -23,6 +24,9 @@ export const setupLocation = (bot) => {
           break
         case PUBLIC_TOILETS:
           replyNextPublicToilet(ctx)
+          break
+        case COVID_TEST_BOX:
+          replyNextCovidTestBox(ctx)
           break
       }
     })

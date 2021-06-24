@@ -11,6 +11,7 @@ export const setupStart = (bot) => {
         [Markup.button.callback('🚲 Nearest Citybikes', 'startCitybikes')],
         [Markup.button.callback('💧 Next Drinking Fountain', 'startDrinkingFountains')],
         [Markup.button.callback('🚾 Next Public Toilet', 'startPublicToilets')],
+        [Markup.button.callback('🦠 Next Covid-19 Test Box', 'startCovidTestBox')],
       ]),
     ),
   )
