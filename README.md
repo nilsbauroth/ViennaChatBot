@@ -1,5 +1,11 @@
 # ViennaChatBot
 
+This is a project for the course "Open Data & Data Ethics" at University of Applied Sciences Technikum Vienna.
+
+| Starting the bot with `/start`                                                  | Next city bike station                                                          |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| <img src="pictures\demo_image_1.png" alt="small-corrPlot" style="zoom: 40%;" /> | <img src="pictures\demo_image_2.png" alt="small-corrPlot" style="zoom: 40%;" /> |
+
 Members: Nils Bauroth, Sigrid Huemer, Linus Schneider
 
 Goal: creating a Telegram chatbot which lists you interesting points in Vienna near your location. Think of it like a “Vienna Service” Bot. You can list ViennaCityBikes near you or drinking fountains, public toilets etc
@@ -10,16 +16,17 @@ Used Data: It may be that we do not manage to include all the datasets, but thos
 - [ ] Public Toilets
 - [x] Drinking Fountains
 - [ ] Cool Streets
-- [ ] Mistplätze
+- [ ] Recycling places
 
 Tech Stack:
 
-- Telegram Bot API
 - Telegram BotFather
-- JavaScript
-- Node JS
+- Telegraf.js (Telegram Bot Framework)
+- Node.js (JavaScript)
+- Redis Database
+- Google Firebase deployment possible (see branch `firebase`)
 
-Approach: We begin with using ViennaCityBike data and build our bot around this use case.
+Have a look at our [Wiki](https://github.com/nilsbauroth/ViennaChatBot/wiki) for more information about the project and the deployment steps.
 
 ## Running the application
 
