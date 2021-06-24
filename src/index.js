@@ -3,10 +3,10 @@ require('dotenv').config()
 require('@babel/core').transform('code', {
   presets: ['@babel/preset-env'],
 })
-const http = require('http')
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 
+import express from 'express'
 import { Telegraf } from 'telegraf'
 import { setupHelp, setupStart } from './commands/startAndHelp'
 import { setupCityBikes } from './commands/citybikes'
@@ -26,10 +26,17 @@ bot.launch()
 
 const port = process.env.PORT || 8000
 
-const server = http.createServer((_req, _res) => {
+const app = express()
+app.get('/', (_req, res) => res.send('Hello World!'))
+
+bot.telegram.setWebhook(
+  `https://vienna-chat-bot.herokuapp.com/bot-${process.env.BOT_TOKEN}`,
+)
+app.use(bot.webhookCallback(`/bot-${process.env.BOT_TOKEN}`))
+
+app.listen(port, () => {
   console.log(`Listening on port ${port}`)
 })
-server.listen(port)
 
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'))
