@@ -22,7 +22,6 @@ export const replyNextCitybikes = async (ctx) => {
 
   const data = await fetchUrl('https://dynamisch.citybikewien.at/citybike_xml.php?json')
 
-  //TODO: Funktion für nearestFreeBike und für nearestFreeReturnBox
   const nearestStation = data.reduce((accStation, currStation) => {
     const dis = distance(latitude, longitude, currStation.latitude, currStation.longitude)
     const dis_old = accStation ? accStation.distance : 999999

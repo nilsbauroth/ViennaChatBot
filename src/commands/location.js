@@ -12,12 +12,7 @@ export const setupLocation = (bot) => {
       `*Your Location* \nlat: ${location.latitude} \nlon: ${location.longitude}`,
     )
 
-    // TODO: save location data to redis
-    console.log('redis current: ' + redis.get('current_command'))
-
     redis.get('current_command').then((res) => {
-      console.log('RESULT:' + res)
-
       switch (res) {
         case CITYBIKE:
           replyNextCitybikes(ctx)
