@@ -4,6 +4,8 @@ require('@babel/core').transform('code', {
   presets: ['@babel/preset-env'],
 })
 const http = require('http')
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
 
 import { Telegraf } from 'telegraf'
 import { setupHelp, setupStart } from './commands/startAndHelp'
