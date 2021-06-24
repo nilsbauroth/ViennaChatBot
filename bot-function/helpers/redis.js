@@ -1,6 +1,6 @@
 require('dotenv').config()
-import Redis from 'ioredis'
 import * as functions from 'firebase-functions'
+import Redis from 'ioredis'
 
 export const redis = new Redis({
   port: 13413,

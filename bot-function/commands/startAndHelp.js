@@ -1,13 +1,16 @@
 import { Markup } from 'telegraf'
 
+const markupText =
+  '*Welcome to the Vienna Chatbot* \n\n' + 'Find following things in your area:'
+
 export const setupStart = (bot) => {
   bot.start((ctx) =>
-    ctx.reply(
-      '**Welcome**',
+    ctx.replyWithMarkdownV2(
+      markupText,
       Markup.inlineKeyboard([
-        [Markup.button.callback('Share Location', 'shareLocation')],
         [Markup.button.callback('🚲 Nearest Citybikes', 'startCitybikes')],
-        [Markup.button.callback('🚮 Next Recycling', 'startRecycling')],
+        [Markup.button.callback('💧 Next Drinking Fountain', 'startDrinkingFountains')],
+        /*[Markup.button.callback('🚮 Next Recycling', 'startRecycling')],*/
       ]),
     ),
   )
