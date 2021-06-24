@@ -3,6 +3,7 @@ require('dotenv').config()
 require('@babel/core').transform('code', {
   presets: ['@babel/preset-env'],
 })
+const http = require('http')
 
 import { Telegraf } from 'telegraf'
 import { setupHelp, setupStart } from './commands/startAndHelp'
@@ -20,6 +21,13 @@ setupCityBikes(bot)
 setupDrinkingFountains(bot)
 
 bot.launch()
+
+const port = process.env.PORT || 8000
+
+const server = http.createServer((_req, _res) => {
+  console.log(`Listening on port ${port}`)
+})
+server.listen(port)
 
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'))
