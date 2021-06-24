@@ -2,6 +2,7 @@ import { Markup } from 'telegraf'
 import { redis } from '../helpers/redis'
 import { replyNextCitybikes, CITYBIKE } from './citybikes'
 import { replyNextDrinkingFountains, DRINKING_FOUNTAINS } from './drinkingFountains'
+import { replyNextPublicToilet, PUBLIC_TOILETS } from './publicToilets'
 
 export const setupLocation = (bot) => {
   bot.on('location', (ctx) => {
@@ -19,6 +20,9 @@ export const setupLocation = (bot) => {
           break
         case DRINKING_FOUNTAINS:
           replyNextDrinkingFountains(ctx)
+          break
+        case PUBLIC_TOILETS:
+          replyNextPublicToilet(ctx)
           break
       }
     })

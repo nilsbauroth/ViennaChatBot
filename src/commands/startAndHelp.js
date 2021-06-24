@@ -10,7 +10,7 @@ export const setupStart = (bot) => {
       Markup.inlineKeyboard([
         [Markup.button.callback('🚲 Nearest Citybikes', 'startCitybikes')],
         [Markup.button.callback('💧 Next Drinking Fountain', 'startDrinkingFountains')],
-        /*[Markup.button.callback('🚮 Next Recycling', 'startRecycling')],*/
+        [Markup.button.callback('🚾 Next Public Toilet', 'startPublicToilets')],
       ]),
     ),
   )
