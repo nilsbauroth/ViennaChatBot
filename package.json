@@ -6,7 +6,9 @@
   "scripts": {
     "postinstall": "cd bot-function && npm install",
     "start": "nodemon --exec babel-node bot-function/index.js",
+    "prebuild": "rimraf dist",
     "build": "babel bot-function -d dist",
+    "prebuild-functions": "rimraf functions",
     "build-functions": "babel bot-function --out-dir functions --copy-files --ignore src/node_modules",
     "postbuild-functions": "cd functions && npm install",
     "deploy": "npm run build-functions && firebase deploy --only functions"
@@ -33,7 +35,7 @@
     "@babel/cli": "^7.14.3",
     "@babel/core": "^7.14.3",
     "@babel/node": "^7.13.13",
-    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-env": "^7.14.7",
     "eslint": "^7.26.0",
     "nodemon": "^2.0.7",
     "prettier": "2.2.1"

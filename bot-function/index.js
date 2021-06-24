@@ -3,6 +3,8 @@ require('dotenv').config()
 require('@babel/core').transform('code', {
   presets: ['@babel/preset-env'],
 })
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
 
 import * as functions from 'firebase-functions'
 import { Telegraf } from 'telegraf'
