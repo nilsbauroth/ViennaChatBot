@@ -1,4 +1,5 @@
 import { Markup } from 'telegraf'
+import { escapeMdCharacters } from '../helpers/escapeMdCharacters'
 import { fetchUrl } from '../helpers/fetch'
 import { distance } from '../helpers/location'
 import { redis } from '../helpers/redis'
@@ -50,8 +51,11 @@ export const replyNextDrinkingFountains = async (ctx) => {
 
   ctx.reply('💧🚰')
   ctx.replyWithMarkdownV2(
-    `*${nearestFountain.properties ? nearestFountain.properties.NAME : ''}*\n` +
-      `Distance: ${Math.ceil(nearestFountain.distance)}m \n`,
+    `*${
+      nearestFountain.properties
+        ? escapeMdCharacters(nearestFountain.properties.NAME)
+        : ''
+    }*\n` + `Distance: ${Math.ceil(nearestFountain.distance)}m \n`,
   )
 
   return ctx.replyWithLocation(

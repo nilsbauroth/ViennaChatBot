@@ -1,4 +1,5 @@
 import { Markup } from 'telegraf'
+import { escapeMdCharacters } from '../helpers/escapeMdCharacters'
 import { fetchUrl } from '../helpers/fetch'
 import { distance } from '../helpers/location'
 import { redis } from '../helpers/redis'
@@ -35,8 +36,8 @@ export const replyNextCitybikes = async (ctx) => {
 
   ctx.reply('🚴🏻‍♀️🚴🏻‍♂️')
   ctx.replyWithMarkdownV2(
-    `*${nearestStation.name}*\n` +
-      `${nearestStation.description}\n\n` +
+    `*${escapeMdCharacters(nearestStation.name)}*\n` +
+      `${escapeMdCharacters(nearestStation.description)}\n\n` +
       `Distance: ${Math.ceil(nearestStation.distance)}m \n` +
       `Free Bikes: ${nearestStation.free_bikes}\n` +
       `Free Return Boxes: ${nearestStation.free_boxes}`,

@@ -26,10 +26,7 @@ export const replyNextCovidTestBox = async (ctx) => {
   )
 
   const coordinates = await Promise.all(
-    data.features.map(async (curr) => {
-      console.log('coords')
-      return await forwardGeocode(curr.properties.ADDRESSE)
-    }),
+    data.features.map(async (curr) => await forwardGeocode(curr.properties.ADDRESSE)),
   )
 
   const nearest = data.features.reduce((acc, curr, idx) => {
@@ -53,16 +50,16 @@ export const replyNextCovidTestBox = async (ctx) => {
   const address = nearest.properties.ADDRESSE
     ? escapeMdCharacters(nearest.properties.ADDRESSE)
     : ''
-  const text = nearest.properties.ZUSATZTEXT
-    ? escapeMdCharacters(nearest.properties.ZUSATZTEXT)
+  const text = nearest.properties.OEFFNUNGSZEIT
+    ? escapeMdCharacters(nearest.properties.OEFFNUNGSZEIT)
     : ''
 
   ctx.reply('🦠😷')
   ctx.replyWithMarkdownV2(
     `*${escapeMdCharacters(nearest.properties.NAME)}*\n` +
-      `${address}\n\n` +
-      `${text}\n` +
-      `Distance: ${Math.ceil(nearest.distance)}m \n`,
+      `${address}\n` +
+      `Distance: ${Math.ceil(nearest.distance)}m \n\n` +
+      `${text}\n`,
   )
 
   return ctx.replyWithLocation(

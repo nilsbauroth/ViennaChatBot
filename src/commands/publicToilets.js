@@ -1,4 +1,5 @@
 import { Markup } from 'telegraf'
+import { escapeMdCharacters } from '../helpers/escapeMdCharacters'
 import { fetchUrl } from '../helpers/fetch'
 import { distance } from '../helpers/location'
 import { redis } from '../helpers/redis'
@@ -53,10 +54,10 @@ export const replyNextPublicToilet = async (ctx) => {
 
   const street = nearestToilet.properties.STRASSE ? nearestToilet.properties.STRASSE : ''
   const location = nearestToilet.properties.ORTSANGABE
-    ? ' ' + nearestToilet.properties.ORTSANGABE
+    ? ' ' + escapeMdCharacters(nearestToilet.properties.ORTSANGABE)
     : ''
   const equipment = nearestToilet.properties.AUSSTATTUNG
-    ? `Equipment: ${nearestToilet.properties.AUSSTATTUNG}`
+    ? `Equipment: ${escapeMdCharacters(nearestToilet.properties.AUSSTATTUNG)}`
     : ''
   const openTimes = nearestToilet.properties.OEFFNUNGSZEIT
     ? nearestToilet.properties.OEFFNUNGSZEIT
