@@ -27,20 +27,17 @@
     "url": "https://github.com/nilsbauroth/ViennaChatBot/issues"
   },
   "homepage": "https://github.com/nilsbauroth/ViennaChatBot#readme",
-  "babel": {
-    "presets": [],
-    "plugins": []
-  },
   "devDependencies": {
     "@babel/cli": "^7.14.3",
-    "@babel/core": "^7.14.3",
     "@babel/node": "^7.13.13",
-    "@babel/preset-env": "^7.14.7",
     "eslint": "^7.26.0",
     "nodemon": "^2.0.7",
     "prettier": "2.2.1"
   },
   "dependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.7",
+    "express": "^4.17.1",
     "firebase-functions": "^3.14.1"
   }
 }
