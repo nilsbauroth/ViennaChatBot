@@ -2,6 +2,8 @@
 
 This is a project for the course "Open Data & Data Ethics" at University of Applied Sciences Technikum Vienna.
 
+The bot is called **@vienna_service_bot** and can be added in Telegram private chats and group chats.
+
 | Starting the bot with `/start`                                                  | Next city bike station                                                          |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | <img src="pictures\demo_image_1.png" alt="small-corrPlot" style="zoom: 40%;" /> | <img src="pictures\demo_image_2.png" alt="small-corrPlot" style="zoom: 40%;" /> |
