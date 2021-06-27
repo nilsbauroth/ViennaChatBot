@@ -3,8 +3,10 @@
 // https://core.telegram.org/bots/api#markdownv2-style
 
 export const escapeMdCharacters = (mdString) =>
-  mdString
-    .replaceAll('.', '\\.')
-    .replaceAll('-', '\\-')
-    .replaceAll(',', '\\,')
-    .replaceAll('!', '\\!')
+  typeof mdString === 'string'
+    ? mdString
+        .replaceAll('.', '\\.')
+        .replaceAll('-', '\\-')
+        .replaceAll(',', '\\,')
+        .replaceAll('!', '\\!')
+    : mdString
