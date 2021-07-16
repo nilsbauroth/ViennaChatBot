@@ -26,7 +26,7 @@ setupCovidTestBox(bot)
 
 bot.launch()
 
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 8080
 
 const app = express()
 app.get('/', (_req, res) => res.send('Hello World!'))

@@ -30,6 +30,8 @@ Tech Stack:
 
 Have a look at our [Wiki](https://github.com/nilsbauroth/ViennaChatBot/wiki) for more information about the project and the deployment steps.
 
+
+
 ## Running the application
 
 ### 1. Create a .env file
@@ -48,7 +50,15 @@ REDIS_PASSWORT=<YOUR_REDIS_USER_PASSWORD>
 OPENCAGE_API_KEY=<YOUR_OPEN_CAGE_KEY>
 ```
 
-### 2. Start the application
+
+
+### 2. Start the application (with Docker)
+
+The application also runs with Docker. Run this command: `docker compose up -d` (with [Compose V2](https://docs.docker.com/compose/cli-command/)) or `docker-compose up -d`
+
+
+
+### 2. Start the application (without Docker)
 
 First install all required libraries with
 
@@ -61,6 +71,8 @@ Then start the app with
 ```
 npm run start
 ```
+
+
 
 ## Building the application for production
 
@@ -79,3 +91,10 @@ npm run start:prod
 ```
 
 to run the files from the `dist` folder.
+
+
+
+
+
+
+

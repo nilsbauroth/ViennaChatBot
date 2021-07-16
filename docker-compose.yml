@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  viennachatbot:
+    container_name: viennachatbot
+    build: .
+    ports:
+      - '8080:8080'
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - REDIS_PASSWORT=${REDIS_PASSWORT}
+      - OPENCAGE_API_KEY=${OPENCAGE_API_KEY}
