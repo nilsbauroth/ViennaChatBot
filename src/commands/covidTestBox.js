@@ -53,12 +53,13 @@ export const replyNextCovidTestBox = async (ctx) => {
   const text = nearest.properties.OEFFNUNGSZEIT
     ? escapeMdCharacters(nearest.properties.OEFFNUNGSZEIT)
     : ''
+  const distanceString = escapeMdCharacters(Math.ceil(nearest.distance).toString())
 
   ctx.reply('🦠😷')
   ctx.replyWithMarkdownV2(
     `*${escapeMdCharacters(nearest.properties.NAME)}*\n` +
       `${address}\n` +
-      `Distance: ${Math.ceil(nearest.distance)}m \n\n` +
+      `Distance: ${distanceString}m \n\n` +
       `${text}\n`,
   )
 

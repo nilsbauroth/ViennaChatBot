@@ -34,11 +34,13 @@ export const replyNextCitybikes = async (ctx) => {
       : { ...currStation, distance: dis }
   }, null)
 
+  const distanceString = escapeMdCharacters(Math.ceil(nearestStation.distance).toString())
+
   ctx.reply('🚴🏻‍♀️🚴🏻‍♂️')
   ctx.replyWithMarkdownV2(
     `*${escapeMdCharacters(nearestStation.name)}*\n` +
       `${escapeMdCharacters(nearestStation.description)}\n\n` +
-      `Distance: ${Math.ceil(nearestStation.distance)}m \n` +
+      `Distance: ${distanceString}m \n` +
       `Free Bikes: ${nearestStation.free_bikes}\n` +
       `Free Return Boxes: ${nearestStation.free_boxes}`,
   )

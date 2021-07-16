@@ -62,13 +62,14 @@ export const replyNextPublicToilet = async (ctx) => {
   const openTimes = nearestToilet.properties.OEFFNUNGSZEIT
     ? nearestToilet.properties.OEFFNUNGSZEIT
     : ''
+  const distance = escapeMdCharacters(Math.ceil(nearestToilet.distance).toString())
 
   ctx.reply('🧻🚽')
   ctx.replyWithMarkdownV2(
     `*${street}` +
       `${location}*\n` +
       `${nearestToilet.properties.ICON_TXT}\n` +
-      `Distance: ${Math.ceil(nearestToilet.distance)}m \n` +
+      `Distance: ${distance}m \n` +
       `Open: ${openTimes}\n\n` +
       `${equipment}`,
   )
