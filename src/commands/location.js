@@ -7,29 +7,34 @@ import { replyNextPublicToilet, PUBLIC_TOILETS } from './publicToilets'
 
 export const setupLocation = (bot) => {
   bot.on('location', (ctx) => {
+    /*
     const msg = ctx.update.message
     const location = msg.location
-
-    ctx.replyWithMarkdownV2(
+    
+    ctx.reply(
       `*Your Location* \nlat: ${location.latitude} \nlon: ${location.longitude}`,
     )
+    */
 
-    redis.get('current_command').then((res) => {
-      switch (res) {
-        case CITYBIKE:
-          replyNextCitybikes(ctx)
-          break
-        case DRINKING_FOUNTAINS:
-          replyNextDrinkingFountains(ctx)
-          break
-        case PUBLIC_TOILETS:
-          replyNextPublicToilet(ctx)
-          break
-        case COVID_TEST_BOX:
-          replyNextCovidTestBox(ctx)
-          break
-      }
-    })
+    redis
+      .get('current_command')
+      .then((res) => {
+        switch (res) {
+          case CITYBIKE:
+            replyNextCitybikes(ctx)
+            break
+          case DRINKING_FOUNTAINS:
+            replyNextDrinkingFountains(ctx)
+            break
+          case PUBLIC_TOILETS:
+            replyNextPublicToilet(ctx)
+            break
+          case COVID_TEST_BOX:
+            replyNextCovidTestBox(ctx)
+            break
+        }
+      })
+      .catch((err) => console.error(err))
   })
 
   bot.action('shareLocation', (ctx) => {
